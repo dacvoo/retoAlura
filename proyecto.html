@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div> 
+        <img src="Vector.png" alt="logo" class="logo">
+    </div>
+   
+    <main>
+        <section>
+          <textarea class="text" cols="30" rows="10" placeholder="Ingrese el texto aqui"></textarea>
+          <div>
+             <h6> &#9888;  Solo minusculas y sin acento</h6>
+          </div>
+          <div class="boton">
+             <button class="encriptador" onclick="botonEncriptar()"> Encriptar  </button>
+             <button class="desencriptar" onclick="botonDesencriptar()"> Desencriptar</button>
+          </div>
+        </section>
+        <section>
+            <textarea  class="mensaje" cols="20" rows="10"></textarea>
+            <div>
+                <button class="copiar">copiar</button>
+            </div>
+        </section>
+    </main>
+
+<script >
+    const text = document.querySelector(".text");
+const mensaje = document.querySelector(".mensaje");
+
+function botonEncriptar(){
+    const textoencriptado = encriptar(text.value);
+    mensaje.value = textoencriptado;
+    text.value = "";
+    mensaje.style.backgroundImage = "none"
+}
+
+function encriptar(stringEncriptada){
+    let matrizcodigo = [["e", "enter"],["i", "imes"],["a", "ai"],["o", "ober"],["u", "ufat"]];
+    stringEncriptada=stringEncriptada.toLowerCase();
+
+    for (let i = 0; i <matrizcodigo.length; i++) {
+        if (stringEncriptada.includes(matrizcodigo[i][0])) {
+            stringEncriptada=stringEncriptada.replaceAll(matrizcodigo[i][0],matrizcodigo[i][1]);
+            
+        }
+    }
+     return stringEncriptada;
+}
+
+function botonDesencriptar(){
+    const textoencriptado = desencriptar(text.value);
+    mensaje.value = textoencriptado;
+    text.value = "";
+   
+}
+function desencriptar(stringDesencriptada){
+    let matrizcodigo = [["e", "enter"],["i", "imes"],["a", "ai"],["o", "ober"],["u", "ufat"]];
+    stringDesencriptada=stringDesencriptada.toLowerCase();
+
+    for (let i = 0; i <matrizcodigo.length; i++) {
+        if (stringDesencriptada.includes(matrizcodigo[i][1])) {
+            stringDesencriptada = stringDesencriptada.replaceAll(matrizcodigo[i][1] ,matrizcodigo[i][0]);
+            
+        }
+    }
+     return stringDesencriptada;
+}
+</script>
+
+</body>
+
+
+</html>
